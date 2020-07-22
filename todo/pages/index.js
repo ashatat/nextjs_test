@@ -1,15 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
+import { getNotes } from '../database/queries/notes'
 
 // once you get notes from getStatic props comment this
-const notes = [
-  { id: 1, title: "meeting", description: "meeting with client" },
-  { id: 2, title: "study", description: "styding nextJS" },
-  { id: 3, title: "have a dinner", description: "with freinds" },
-];
+// const notes = [
+//   { id: 1, title: "meeting", description: "meeting with client" },
+//   { id: 2, title: "study", description: "styding nextJS" },
+//   { id: 3, title: "have a dinner", description: "with freinds" },
+// ];
 
 // receive notes as props
-function Home() {
+function Home({ notes }) {
+  // console.log(props)
   return (
     <div className="container">
       <Head>
@@ -40,8 +42,13 @@ function Home() {
 // use getStaticProps to fetch notes from query Be careful how to return props as notes then comment notes above
 
 
-// export async function getStaticProps() {
-//   // your code here
-// }
+export async function getStaticProps() {
+  const notes = await getNotes();
+
+  console.log(notes);
+  return {
+    props: { notes: notes.rows }
+  }
+}
 
 export default Home;

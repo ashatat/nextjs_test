@@ -7,6 +7,7 @@ function newNote() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    console.log("use effect")
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
         createNote();
