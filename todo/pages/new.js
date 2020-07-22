@@ -21,7 +21,7 @@ function newNote() {
 
   const createNote = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/todo", {
+      const res = await fetch("/api/todo", {
         method: "POST",
         headers: {
           Accept: "application/json",
